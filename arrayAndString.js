@@ -55,16 +55,15 @@ function reverseCstyleString(str){
             frontHalf = newStr.slice(0, i);
             backHalf = newStr.slice(j+1);
             newStr = frontHalf + lastCharToSwap + middle + firstCharToSwap + backHalf;
-            //console.log("i: " + i + " " + newStr);
         }else {
             newStr = lastCharToSwap + middle + firstCharToSwap;
-            //console.log("i: " + i + " " + newStr);
         }
-
         console.log(newStr);
     }
+    return newStr;
 }
 reverseCstyleString("abcdef ");
+
 
 function reverseCstyleString2(str){
     //if (Object.prototype.toString.call(str) !== "object String"){

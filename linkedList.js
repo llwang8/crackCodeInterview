@@ -256,14 +256,19 @@ Write a func­tion to reverse a singly linked list.
 function reverseSingleLinkedList(head){
     var previousNode = head;
     var currentNode = head;
-    var nextNode = head.next;
+
     if (!head){
         return "Empty list.";
     }
     if(!head.next){
         return head;
     }
-
+    while (currentNode){
+        currentNode.next = previousNode;
+        previousNode = currentNode;
+        currentNode = currentNode.next;
+    }
+    return previousNode;
 
 }
 
@@ -275,7 +280,15 @@ Write a func­tion to deter­mine if a singly linked list is a palindrome.
 Input : A linked list
 Out­put : Boolean (true or false)
 */
-
+function  isSinglyLinkedListPalindrome(list){
+    if (!list.head){
+        throw new Error "Empty list.";
+    }
+    if(!list.head.next){
+        return true;
+    }
+    return list == reverseSingleLinkedList(list) ? true : false;
+}
 
 
 
@@ -287,6 +300,26 @@ Input : A linked list
 Out­put : A linked list
 */
 
+function partitionLinkedList(list, val){
+    if (!list.head){
+        throw new Error "Empty list.";
+    }
+    if(!list.head.next){
+        return list;
+    }
+    var currentNode = list.head;
+    var beforeValList, afterValList, equalValList, currentNodeBeforeValList;
+
+    while (currentNode){
+        if (currentNode.value < val){
+            currentNodeBeforeValList = beforeValList.addNode(currentNode.val);
+        }else if (currentNode.value >= val){
+            afterValList.addNode(currentNode.val);
+        }
+    }
+    currentNodeBeforeValList.next = afterValList.head;
+    return beforeValList;
+}
 
 
 
